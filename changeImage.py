@@ -47,7 +47,8 @@ class sac_images(object):
                         #  Take out any Alpha or Palette mode
                         im = im.convert("RGB")
                     if new_size != 0:
-                        im = im.resize(size=new_size)
+                        # im = im.resize(size=new_size)
+                        im.thumbnail(size=new_size)
                         # print(infile, im.format, f"{im.size}x{im.mode}")
                     if rotation != 0:
                         # im = im.rotate(angle=rotation)
@@ -56,16 +57,17 @@ class sac_images(object):
                     if result_format != str('list of PIL images'):
                         filenm, ext = os.path.splitext(infile)
                         filenm = filenm.split("/")[-1]
-                        print("infile name:" + str(filenm))
+                        # print("infile name:" + str(filenm))
                         # outfile = os.path.dirname(infile) + "/../"
                         # print("outfile :" + str(outfile))
                         # outfile = os.path.normpath(outfile)
                         # print("outfile :" + str(outfile))
                         outfile = str(self.OUTCOME_DIR_) + "/" + filenm + str(result_format)
                         # print("outfile :" + str(outfile))
-                        print("infile path :" + str(os.path.dirname(infile)))
-                        print("outfile :" + str(outfile))
+                        # print("infile path :" + str(os.path.dirname(infile)))
+                        # print("outfile :" + str(outfile))
                         im.save(outfile, "JPEG")
+                        print(outfile, im.format, f"{im.size}x{im.mode}")
                     if result_format == str('list of PIL images'):
                         outfile = str(self.OUTCOME_DIR_)  + os.path.basename(infile)
                         im.save(outfile, "JPEG")
