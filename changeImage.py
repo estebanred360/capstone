@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 code adapted from the following source:
 https://codereview.stackexchange.com/questions/199694/python-class-for-organizing-images-for-machine-learning
@@ -12,9 +13,8 @@ class sac_images(object):
         self.new_img_resolution_ = 600, 400
         self.format_target_ = ".jpeg"
         self.theta_rot_ = 0
-        self.INPUT_DIR_ = "./images"
-        self.OUTCOME_DIR_ = "/opt/icons/"
-        self.OUTCOME_DIR2_ = "/workspaces/python/images_outcome/"
+        self.INPUT_DIR_ = "./data/supplier-data/images/"
+        self.OUTCOME_DIR_ = "/workspaces/python/data/supplier-data/images/"
 
     def get_filenames(self, path):
         '''
@@ -35,7 +35,7 @@ class sac_images(object):
     
     def scale_and_convert(self, img_dir_path, result_format='list of PIL images', new_size=0, rotation=0):
         files = self.get_filenames(img_dir_path)
-        path_out = self.make_dir_if_needed(self.OUTCOME_DIR2_)
+        path_out = self.make_dir_if_needed(self.OUTCOME_DIR_)
 
         for file in files:
             infile = os.path.join(img_dir_path, file)
@@ -54,17 +54,20 @@ class sac_images(object):
                         im.transpose(Image.Transpose.ROTATE_270)
                         # print(infile, im.format, f"{im.size}x{im.mode}")
                     if result_format != str('list of PIL images'):
-                        outfile = os.path.dirname(infile) + "/../"
+                        filenm, ext = os.path.splitext(infile)
+                        filenm = filenm.split("/")[-1]
+                        print("infile name:" + str(filenm))
+                        # outfile = os.path.dirname(infile) + "/../"
                         # print("outfile :" + str(outfile))
-                        outfile = os.path.normpath(outfile)
+                        # outfile = os.path.normpath(outfile)
                         # print("outfile :" + str(outfile))
-                        outfile = outfile + "/"  + str(self.OUTCOME_DIR_) + "/" + os.path.basename(infile) + str(result_format)
+                        outfile = str(self.OUTCOME_DIR_) + "/" + filenm + str(result_format)
                         # print("outfile :" + str(outfile))
-                        # print("infile path :" + str(os.path.dirname(infile)))
-                        # print("outfile :" + str(outfile))
+                        print("infile path :" + str(os.path.dirname(infile)))
+                        print("outfile :" + str(outfile))
                         im.save(outfile, "JPEG")
                     if result_format == str('list of PIL images'):
-                        outfile = str(self.OUTCOME_DIR2_)  + os.path.basename(infile)
+                        outfile = str(self.OUTCOME_DIR_)  + os.path.basename(infile)
                         im.save(outfile, "JPEG")
                         # print(outfile, im.format, f"{im.size}x{im.mode}")
             except OSError:
@@ -72,5 +75,5 @@ class sac_images(object):
 
 sac = sac_images()
 image_path = sys.argv[1:]
-# sac.scale_and_convert(img_dir_path=sac.INPUT_DIR_, result_format=sac.format_target_, new_size=sac.new_img_resolution_, rotation=sac.theta_rot_)
-sac.scale_and_convert(img_dir_path=sac.INPUT_DIR_, result_format='list of PIL images', new_size=sac.new_img_resolution_, rotation=sac.theta_rot_)
+sac.scale_and_convert(img_dir_path=sac.INPUT_DIR_, result_format=sac.format_target_, new_size=sac.new_img_resolution_, rotation=sac.theta_rot_)
+# sac.scale_and_convert(img_dir_path=sac.INPUT_DIR_, result_format='list of PIL images', new_size=sac.new_img_resolution_, rotation=sac.theta_rot_)
