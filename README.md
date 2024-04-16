@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is an example Python project used in Codeanywhere.
 
 [Try it out](https://app.codeanywhere.com/#https://github.com/Codeanywhere-Templates/python)
@@ -13,3 +14,7 @@ Or just press the *Run Code* button found in the top right of the editor panel.
 ### Want to contribute?
 
 Feel free to [open a PR](https://github.com/Codeanywhere-Templates/python) with any suggestions for this test project 😃 
+=======
+# capstone
+IT Automation with Python Course - Capstone module
+>>>>>>> f2535351b88fcbbcb106d6f6f36613e7024de731
