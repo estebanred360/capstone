@@ -9,9 +9,9 @@ from pathlib import Path
 
 class sac_images(object):
     def __init__(self):
-        self.new_img_resolution_ = 128, 128
+        self.new_img_resolution_ = 600, 400
         self.format_target_ = ".jpeg"
-        self.theta_rot_ = 270
+        self.theta_rot_ = 0
         self.INPUT_DIR_ = "./images"
         self.OUTCOME_DIR_ = "/opt/icons/"
         self.OUTCOME_DIR2_ = "/workspaces/python/images_outcome/"
@@ -34,22 +34,6 @@ class sac_images(object):
             os.makedirs(folder)
     
     def scale_and_convert(self, img_dir_path, result_format='list of PIL images', new_size=0, rotation=0):
-        """
-        Convert an image using PIL applying the following:
-
-        The images received are in the wrong format:
-            .tiff format
-            Image resolution 192x192 pixel (too large)
-            Rotated 90° anti-clockwise
-
-        The images required for the launch should be in this format:
-            .jpeg format
-            Image resolution 128x128 pixel
-            Should be straight
-
-        from_file: The image file that should be converted
-        to_file: The file to save the image to
-        """
         files = self.get_filenames(img_dir_path)
         path_out = self.make_dir_if_needed(self.OUTCOME_DIR2_)
 
