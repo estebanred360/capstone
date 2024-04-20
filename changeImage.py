@@ -8,7 +8,7 @@ from PIL import Image
 import os, sys
 from pathlib import Path
 
-class sac_images(object):
+class changeImage(object):
     def __init__(self):
         self.new_img_resolution_ = 600, 400
         self.format_target_ = ".jpeg"
@@ -75,7 +75,7 @@ class sac_images(object):
             except OSError:
                 pass
 
-sac = sac_images()
+sac = changeImage()
 image_path = sys.argv[1:]
 sac.scale_and_convert(img_dir_path=sac.INPUT_DIR_, result_format=sac.format_target_, new_size=sac.new_img_resolution_, rotation=sac.theta_rot_)
 # sac.scale_and_convert(img_dir_path=sac.INPUT_DIR_, result_format='list of PIL images', new_size=sac.new_img_resolution_, rotation=sac.theta_rot_)
