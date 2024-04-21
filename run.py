@@ -2,6 +2,7 @@
 
 import requests
 import os, sys
+import json
 import re
 from pathlib import Path
 
@@ -57,7 +58,7 @@ class runPOST(object):
 
         return feedback_dic
 
-    def aggregatedPayload(self):
+    def aggregatedPayload(self, savedico=True):
         feedback_files = self.get_filenames(self.INPUT_DIR_)
         print("List of text files: " + str(feedback_files))
         for file in feedback_files:
@@ -65,6 +66,11 @@ class runPOST(object):
             dico = self.feeding_dic(file)
             self.feedback_list.append(dico)
         print(str(self.feedback_list))
+        if savedico == True:
+            with open('fruit_dico.jason', 'w') as dicofile:
+                dico = self.feedback_list
+                json.dump(dico, dicofile)
+                dicofile.close()
         return self.feedback_list
 
     def postering(self):
