@@ -9,6 +9,7 @@ class supplyImage(object):
         self.apiurl_ = "https://jsonplaceholder.typicode.com/todos"
         self.INPUT_DIR_ = "./data/supplier-data/images/"
         self.OUTCOME_DIR_ = "/workspaces/python/data/supplier-data/images/"
+        return
 
     def get_filenames(self, path):
         '''
@@ -32,7 +33,7 @@ class supplyImage(object):
                     print(r.status_code)
             except OSError:
                 pass
+        return
 
 supplyImages = supplyImage()
-image_path = sys.argv[1:]
 supplyImages.uploader(img_dir_path=supplyImages.INPUT_DIR_, result_format=supplyImages.format_target_)
